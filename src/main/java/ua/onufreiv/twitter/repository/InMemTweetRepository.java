@@ -2,8 +2,8 @@ package ua.onufreiv.twitter.repository;
 
 import ua.onufreiv.twitter.domain.Tweet;
 import ua.onufreiv.twitter.domain.User;
-import ua.onufreiv.twitter.infrastructure.Benchmark;
-import ua.onufreiv.twitter.infrastructure.PostConstructBean;
+import ua.onufreiv.twitter.infrastructure.annotations.Benchmark;
+import ua.onufreiv.twitter.infrastructure.annotations.PostConstructBean;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,8 @@
 package ua.onufreiv.twitter.infrastructure;
 
-import java.lang.reflect.InvocationHandler;
+import ua.onufreiv.twitter.infrastructure.annotations.Benchmark;
+import ua.onufreiv.twitter.infrastructure.annotations.PostConstructBean;
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
@@ -30,36 +32,36 @@ public class ApplicationContext implements Context {
             throw new RuntimeException("Bean \'" + beanName + "\' not found");
         }
         bean = (T) clazz.newInstance();
-//        bean = createProxy(bean);
 
         callInitMethod(bean);
         callPostConstructBean(bean);
 
+        bean = createProxy(bean);
         beans.put(beanName, bean);
         return bean;
     }
 
-//    private <T> T createProxy(T bean) {
-//        T newBean = (T) Proxy.newProxyInstance(bean.getClass().getClassLoader(),
-//                bean.getClass().getInterfaces(),
-//                new InvocationHandler() {
-//                    @Override
-//                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-//                        boolean annotationPresent = method.isAnnotationPresent(Benchmark.class);
-//                        if(annotationPresent) {
-//
-//                        }
-//
-//                        method.invoke(bean);
-//
-//                        if(annotationPresent) {
-//
-//                        }
-//                        return null;
-//                    }
-//                });
-//        return newBean;
-//    }
+    private <T> T createProxy(T bean) {
+        T newBean = (T) Proxy.newProxyInstance(bean.getClass().getClassLoader(),
+                bean.getClass().getInterfaces(),
+                (proxy, method, args) -> {
+                    String methodName = method.getName();
+                    Method parentMethod = bean.getClass().getMethod(methodName, method.getParameterTypes());
+                    Benchmark annotation = parentMethod.getAnnotation(Benchmark.class);
+
+                    if (annotation != null && annotation.value()) {
+                        long startTime = 0;
+                        startTime = System.nanoTime();
+                        Object returnValue = method.invoke(bean, args);
+                        long execTime = System.nanoTime() - startTime;
+                        System.out.println("Benchmark for \'" + methodName + "\' [" + execTime + " nanos]");
+                        return returnValue;
+                    }
+
+                    return method.invoke(bean, args);
+                });
+        return newBean;
+    }
 
     private <T> void callPostConstructBean(T bean) throws Exception {
         Class<?> clazz = bean.getClass();
