@@ -1,20 +1,23 @@
 package ua.onufreiv.twitter;
 
+import ua.onufreiv.twitter.domain.Tweet;
+import ua.onufreiv.twitter.domain.User;
+import ua.onufreiv.twitter.domain.service.TweetService;
 import ua.onufreiv.twitter.infrastructure.ApplicationContext;
 import ua.onufreiv.twitter.infrastructure.Context;
 import ua.onufreiv.twitter.infrastructure.JavaConfig;
-import ua.onufreiv.twitter.repository.TweetRepository;
 
 /**
  * Created by Yurii_Onufreiv on 30-Mar-17.
  */
 public class TwitterRunner {
     public static void main(String[] args) throws Exception {
-        Context ctx = new ApplicationContext(new JavaConfig());
-        TweetRepository tweetRepository = ctx.getBean("tweetRepository");
+        Context context = new ApplicationContext(new JavaConfig());
+        TweetService tweetService = context.getBean("tweetService");
 
-//        System.out.println(tweetRepository == ctx.getBean("tweetRepository"));
+        tweetService.findAll().forEach(System.out::println);
 
-        tweetRepository.findAll().forEach(System.out::println);
+        tweetService.create(new Tweet(new User("Test"), "My first test"));
+        tweetService.findAll().forEach(System.out::println);
     }
 }

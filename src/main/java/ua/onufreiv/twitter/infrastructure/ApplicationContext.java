@@ -3,9 +3,12 @@ package ua.onufreiv.twitter.infrastructure;
 import ua.onufreiv.twitter.infrastructure.annotations.Benchmark;
 import ua.onufreiv.twitter.infrastructure.annotations.PostConstructBean;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,7 +34,7 @@ public class ApplicationContext implements Context {
         if (clazz == null) {
             throw new RuntimeException("Bean \'" + beanName + "\' not found");
         }
-        bean = (T) clazz.newInstance();
+        bean = createBean(clazz);
 
         callInitMethod(bean);
         callPostConstructBean(bean);
@@ -39,6 +42,47 @@ public class ApplicationContext implements Context {
         bean = createProxy(bean);
         beans.put(beanName, bean);
         return bean;
+    }
+
+    private <T> T createBean(Class clazz) throws Exception {
+        Constructor<?> constructor = clazz.getConstructors()[0];
+
+        Class[] parameterTypes = constructor.getParameterTypes();
+        List<Object> params = new ArrayList<>();
+        for (Class parameterClass : parameterTypes) {
+            String className = parameterClass.getSimpleName();
+            String beanName = className.substring(0, 1).toLowerCase() + className.substring(1);
+
+            Object param = getBean(beanName);
+            params.add(param);
+        }
+
+        if(params.size() > 0) {
+            return (T) constructor.newInstance(params.toArray());
+        }
+        return (T) clazz.newInstance();
+    }
+
+    private <T> void callInitMethod(T bean) throws Exception {
+        Class<?> clazz = bean.getClass();
+        Method initMethod;
+        try {
+            initMethod = clazz.getMethod("init");
+        } catch (NoSuchMethodException e) {
+            return;
+        }
+        initMethod.invoke(bean);
+    }
+
+    private <T> void callPostConstructBean(T bean) throws Exception {
+        Class<?> clazz = bean.getClass();
+
+        Method[] declaredMethods = clazz.getDeclaredMethods();
+        for (Method method : declaredMethods) {
+            if (method.isAnnotationPresent(PostConstructBean.class)) {
+                method.invoke(bean);
+            }
+        }
     }
 
     private <T> T createProxy(T bean) {
@@ -61,27 +105,5 @@ public class ApplicationContext implements Context {
                     return method.invoke(bean, args);
                 });
         return newBean;
-    }
-
-    private <T> void callPostConstructBean(T bean) throws Exception {
-        Class<?> clazz = bean.getClass();
-
-        Method[] declaredMethods = clazz.getDeclaredMethods();
-        for (Method method : declaredMethods) {
-            if (method.isAnnotationPresent(PostConstructBean.class)) {
-                method.invoke(bean);
-            }
-        }
-    }
-
-    private <T> void callInitMethod(T bean) throws Exception {
-        Class<?> clazz = bean.getClass();
-        Method initMethod;
-        try {
-            initMethod = clazz.getMethod("init");
-        } catch (NoSuchMethodException e) {
-            return;
-        }
-        initMethod.invoke(bean);
     }
 }

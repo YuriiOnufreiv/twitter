@@ -1,5 +1,6 @@
 package ua.onufreiv.twitter.infrastructure;
 
+import ua.onufreiv.twitter.domain.service.TweetServiceImpl;
 import ua.onufreiv.twitter.repository.InMemTweetRepository;
 
 import java.util.HashMap;
@@ -13,6 +14,7 @@ public class JavaConfig implements Config {
 
     {
         classes.put("tweetRepository", InMemTweetRepository.class);
+        classes.put("tweetService", TweetServiceImpl.class);
     }
 
     @Override
