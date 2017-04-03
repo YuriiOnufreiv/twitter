@@ -1,4 +1,4 @@
-package ua.onufreiv.twitter.domain.service;
+package ua.onufreiv.twitter.service;
 
 import ua.onufreiv.twitter.domain.Tweet;
 

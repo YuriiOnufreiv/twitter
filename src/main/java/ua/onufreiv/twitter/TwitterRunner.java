@@ -2,10 +2,10 @@ package ua.onufreiv.twitter;
 
 import ua.onufreiv.twitter.domain.Tweet;
 import ua.onufreiv.twitter.domain.User;
-import ua.onufreiv.twitter.domain.service.TweetService;
 import ua.onufreiv.twitter.infrastructure.ApplicationContext;
 import ua.onufreiv.twitter.infrastructure.Context;
 import ua.onufreiv.twitter.infrastructure.JavaConfig;
+import ua.onufreiv.twitter.service.TweetService;
 
 /**
  * Created by Yurii_Onufreiv on 30-Mar-17.
