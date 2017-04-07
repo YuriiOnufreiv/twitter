@@ -21,16 +21,16 @@ public class SpringTwitterRunner {
         TweetRepository repository = (TweetRepository) reposContext.getBean("tweetRepository");
 
         // beans in container
-        System.out.println(Arrays.toString(reposContext.getBeanDefinitionNames()));
+//        System.out.println(Arrays.toString(reposContext.getBeanDefinitionNames()));
 
         // info about bean
-        BeanDefinition repoBeanDefinition = reposContext.getBeanFactory().getBeanDefinition("tweetRepository");
-        System.out.println(repoBeanDefinition);
+//        BeanDefinition repoBeanDefinition = reposContext.getBeanFactory().getBeanDefinition("tweetRepository");
+//        System.out.println(repoBeanDefinition);
 
         // change bean property dynamically
-        repoBeanDefinition.setScope("prototype");
-        repoBeanDefinition = reposContext.getBeanFactory().getBeanDefinition("tweetRepository");
-        System.out.println(repoBeanDefinition);
+//        repoBeanDefinition.setScope("prototype");
+//        repoBeanDefinition = reposContext.getBeanFactory().getBeanDefinition("tweetRepository");
+//        System.out.println(repoBeanDefinition);
 
         TweetService tweetService = (TweetService) serviceContext.getBean("tweetService");
         tweetService.findAll().forEach(System.out::println);

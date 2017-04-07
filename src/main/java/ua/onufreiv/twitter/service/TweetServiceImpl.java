@@ -15,11 +15,11 @@ public class TweetServiceImpl implements TweetService {
     }
 
     @Override
-    @Benchmark
     public boolean create(Tweet tweet) {
         return tweetRepository.create(tweet);
     }
 
+    @Benchmark
     @Override
     public Iterable findAll() {
         return tweetRepository.findAll();

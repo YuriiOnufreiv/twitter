@@ -9,4 +9,6 @@
           class="ua.onufreiv.twitter.repository.InMemTweetRepository"
           init-method="initialize"/>
 
+    <bean class="ua.onufreiv.twitter.infrastructure.BenchmarkBeanPostProcessor"/>
+
 </beans>

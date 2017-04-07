@@ -25,8 +25,8 @@ public class InMemTweetRepository implements TweetRepository<Tweet> {
         return tweets.add(tweet);
     }
 
-    @Override
     @Benchmark
+    @Override
     public Iterable findAll() {
         return new ArrayList<>(tweets);
     }

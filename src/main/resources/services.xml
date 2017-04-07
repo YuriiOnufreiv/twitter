@@ -10,4 +10,6 @@
         <constructor-arg ref="tweetRepository"/>
     </bean>
 
+    <bean class="ua.onufreiv.twitter.infrastructure.BenchmarkBeanPostProcessor"/>
+
 </beans>
