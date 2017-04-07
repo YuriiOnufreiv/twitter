@@ -2,6 +2,7 @@ package ua.onufreiv.twitter.infrastructure;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.stereotype.Component;
 import ua.onufreiv.twitter.infrastructure.annotations.Benchmark;
 
 import java.lang.reflect.Method;
@@ -11,6 +12,7 @@ import java.lang.reflect.Proxy;
  * @author Yurii Onufreiv
  * @version 1.0
  */
+@Component
 public class BenchmarkBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
@@ -26,7 +28,7 @@ public class BenchmarkBeanPostProcessor implements BeanPostProcessor {
             Benchmark annotation = method.getAnnotation(Benchmark.class);
 
             if(annotation != null && annotation.value()) {
-                System.out.println("-BBPP- Adding proxy to " + clazz + "." + method.getName());
+//                System.out.println("-BBPP- Adding proxy to " + clazz + "." + method.getName());
                 return createProxyInstance(bean);
             }
         }
