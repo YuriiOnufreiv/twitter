@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4">
+    <display-name>Project</display-name>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:/repos.xml classpath:/services.xml</param-value>
+    </context-param>
+
+    <!-- Servlet declaration -->
+    <servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>ua.onufreiv.twitter.web.infrastructure.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:/myWebContext.xml</param-value>
+        </init-param>
+    </servlet>
+
+    <!-- Servlet url mapping -->
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/servlet/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>

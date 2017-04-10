@@ -7,9 +7,11 @@
     <groupId>ua.onufreiv.twitter</groupId>
     <artifactId>twitter</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <properties>
         <spring.version>4.3.7.RELEASE</spring.version>
+        <!--<jetty.http.port>26253</jetty.http.port>-->
     </properties>
 
     <dependencies>
@@ -26,6 +28,14 @@
             <artifactId>spring-context-support</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -36,6 +46,21 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.2.v20170220</version>
+                <configuration>
+                    <httpConnector>
+                        <host>localhost</host>
+                        <port>9999</port>
+                    </httpConnector>
+                    <webApp>
+                        <contextPath>/twitter</contextPath>
+                    </webApp>
                 </configuration>
             </plugin>
         </plugins>

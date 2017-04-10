@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Yurii_Onufreiv on 30-Mar-17.
  */
-@Component
+@Component("tweetRepository")
 public class InMemTweetRepository implements TweetRepository<Tweet> {
     private final List<Tweet> tweets = new ArrayList<>();
 

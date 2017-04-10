@@ -28,7 +28,7 @@ public class BenchmarkBeanPostProcessor implements BeanPostProcessor {
             Benchmark annotation = method.getAnnotation(Benchmark.class);
 
             if(annotation != null && annotation.value()) {
-//                System.out.println("-BBPP- Adding proxy to " + clazz + "." + method.getName());
+                System.out.println("-BBPP- Adding proxy to " + clazz + "." + method.getName());
                 return createProxyInstance(bean);
             }
         }
