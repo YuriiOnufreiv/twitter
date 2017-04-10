@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class User {
     private String username;
+    private Profile profile;
 
     public User() {
     }
@@ -26,8 +27,16 @@ public class User {
         return username;
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
     @Override
     public String toString() {
         return "\'" + username + '\'';
+    }
+
+    public class Profile {
+
     }
 }

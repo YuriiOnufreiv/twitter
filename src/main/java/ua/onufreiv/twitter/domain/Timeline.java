@@ -13,8 +13,28 @@ public class Timeline {
         tweets = new ArrayList<>();
     }
 
-    public void put(Tweet tweet) {
+    public void addTweet(Tweet tweet) {
         tweets.add(tweet);
+    }
+
+    public Tweet makeRetweet(Tweet tweet) {
+        return tweet.retweet();
+    }
+
+    public int likeTweet(Tweet tweet) {
+        return tweet.like();
+    }
+
+    public List<Tweet> userTimeline(User user) {
+        List<Tweet> userTimeline = new ArrayList<>();
+
+        for (Tweet tweet : tweets) {
+            if(tweet.getUser().equals(user)) {
+                userTimeline.add(tweet);
+            }
+        }
+
+        return userTimeline;
     }
 
     public Iterable<Tweet> tweets() {
