@@ -5,6 +5,7 @@ package ua.onufreiv.twitter.domain;
  */
 public class User {
     private String username;
+    private Profile profile;
 
     public User(String username) {
         this.username = username;
@@ -14,8 +15,16 @@ public class User {
         return username;
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
     @Override
     public String toString() {
         return "\'" + username + '\'';
+    }
+
+    public class Profile {
+
     }
 }
