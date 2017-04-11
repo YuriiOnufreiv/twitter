@@ -1,5 +1,6 @@
 package ua.onufreiv.twitter.web.infrastructure;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -17,9 +18,11 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        String contextConfigLocation = getInitParameter("contextConfigLocation");
-        webContext = new ClassPathXmlApplicationContext(contextConfigLocation);
-//        getServletContext().
+        String contextConfigLocationParam = getInitParameter("contextConfigLocation");
+        String commonContextParam = getServletContext().getInitParameter("commonContext");
+
+        ApplicationContext commonContext = (ApplicationContext) getServletContext().getAttribute(commonContextParam);
+        webContext = new ClassPathXmlApplicationContext(new String[]{contextConfigLocationParam}, commonContext);
     }
 
     @Override
@@ -45,7 +48,7 @@ public class DispatcherServlet extends HttpServlet {
     private void handleRequest(HttpServletRequest req, HttpServletResponse resp, String beanName) throws IOException {
         MyController myController = (MyController) webContext.getBean(beanName);
 
-        if(myController != null) {
+        if (myController != null) {
             myController.handleRequest(req, resp);
         } else {
             resp.getWriter().println("<h1>No controller found</h1>");
