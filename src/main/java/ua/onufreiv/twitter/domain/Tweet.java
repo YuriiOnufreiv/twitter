@@ -16,6 +16,9 @@ public class Tweet {
     private List<User> mentions;
     private List<String> replies;
 
+    public Tweet() {
+    }
+
     public Tweet(User user, String text) {
         this.user = user;
         this.text = text;
