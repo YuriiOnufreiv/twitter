@@ -3,16 +3,23 @@
     <display-name>Project</display-name>
 
     <context-param>
-        <param-name>commonContextLocation</param-name>
-        <param-value>classpath:/repos.xml classpath:/services.xml</param-value>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:/repos.xml
+            classpath:/services.xml
+        </param-value>
     </context-param>
-    <context-param>
-        <param-name>commonContext</param-name>
-        <param-value>commonContext</param-value>
-    </context-param>
+    <!--<context-param>-->
+        <!--<param-name>commonContext</param-name>-->
+        <!--<param-value>commonContext</param-value>-->
+    <!--</context-param>-->
+
+    <!--<listener>-->
+        <!--<listener-class>ua.onufreiv.twitter.web.infrastructure.MyServletContextListener</listener-class>-->
+    <!--</listener>-->
 
     <listener>
-        <listener-class>ua.onufreiv.twitter.web.infrastructure.MyServletContextListener</listener-class>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
     <servlet>

@@ -1,7 +1,7 @@
 package ua.onufreiv.twitter.infrastructure;
 
 import ua.onufreiv.twitter.repository.InMemTweetRepository;
-import ua.onufreiv.twitter.service.TweetServiceImpl;
+import ua.onufreiv.twitter.service.impl.TweetServiceImpl;
 
 import java.util.HashMap;
 import java.util.Map;

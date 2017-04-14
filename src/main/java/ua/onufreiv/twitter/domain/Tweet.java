@@ -15,10 +15,10 @@ public class Tweet {
     private List<User> mentions;
     private List<Tweet> replies;
     private List<User> likes;
-    private List<Tweet> retweets;
+    private List<Tweet> reTweets;
 
     private Tweet inReplyToTweet;
-    private Tweet retweetedTweet;
+    private Tweet reTweetedTweet;
 
     public Tweet() {
     }
@@ -76,12 +76,12 @@ public class Tweet {
         this.likes = likes;
     }
 
-    public List<Tweet> getRetweets() {
-        return retweets;
+    public List<Tweet> getReTweets() {
+        return reTweets;
     }
 
-    public void setRetweets(List<Tweet> retweets) {
-        this.retweets = retweets;
+    public void setReTweets(List<Tweet> reTweets) {
+        this.reTweets = reTweets;
     }
 
     public Tweet getInReplyToTweet() {
@@ -92,12 +92,12 @@ public class Tweet {
         this.inReplyToTweet = inReplyToTweet;
     }
 
-    public Tweet getRetweetedTweet() {
-        return retweetedTweet;
+    public Tweet getReTweetedTweet() {
+        return reTweetedTweet;
     }
 
-    public void setRetweetedTweet(Tweet retweetedTweet) {
-        this.retweetedTweet = retweetedTweet;
+    public void setReTweetedTweet(Tweet reTweetedTweet) {
+        this.reTweetedTweet = reTweetedTweet;
     }
 
     @Override

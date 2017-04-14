@@ -1,8 +1,6 @@
 package ua.onufreiv.twitter.web.infrastructure;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +19,8 @@ public class DispatcherServlet extends HttpServlet {
         String contextConfigLocationParam = getInitParameter("contextConfigLocation");
         String commonContextParam = getServletContext().getInitParameter("commonContext");
 
-        ApplicationContext commonContext = (ApplicationContext) getServletContext().getAttribute(commonContextParam);
-        webContext = new ClassPathXmlApplicationContext(new String[]{contextConfigLocationParam}, commonContext);
+//        ApplicationContext commonContext = (ApplicationContext) getServletContext().getAttribute(commonContextParam);
+//        webContext = new ClassPathXmlApplicationContext(new String[]{contextConfigLocationParam}, commonContext);
     }
 
     @Override

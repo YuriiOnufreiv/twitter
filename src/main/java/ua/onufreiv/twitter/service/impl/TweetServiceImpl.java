@@ -1,4 +1,4 @@
-package ua.onufreiv.twitter.service;
+package ua.onufreiv.twitter.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Lookup;
@@ -7,6 +7,7 @@ import ua.onufreiv.twitter.domain.Tweet;
 import ua.onufreiv.twitter.domain.User;
 import ua.onufreiv.twitter.infrastructure.annotations.Benchmark;
 import ua.onufreiv.twitter.repository.TweetRepository;
+import ua.onufreiv.twitter.service.TweetService;
 
 /**
  * Created by Yurii_Onufreiv on 31-Mar-17.
@@ -57,5 +58,10 @@ public class TweetServiceImpl implements TweetService {
         Tweet tweet = create(user, text);
         tweet.setInReplyToTweet(replyToTweet);
         return tweet;
+    }
+
+    @Override
+    public Tweet getById(int id) {
+        return tweetRepository.findByID(id);
     }
 }

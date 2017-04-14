@@ -22,7 +22,7 @@ public class SpringTwitterRunner {
 
         TweetService tweetService = (TweetService) serviceContext.getBean("tweetService");
         User user = (User) reposContext.getBean("user");
-        user.setUsername("Microsofter");
+        user.setName("Microsofter");
         tweetService.create(user, "I like WINDOWS!!!");
         tweetService.findAll().forEach(System.out::println);
 

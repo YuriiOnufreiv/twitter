@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import ua.onufreiv.twitter.service.TweetService;
-import ua.onufreiv.twitter.service.TweetServiceImpl;
+import ua.onufreiv.twitter.service.impl.TweetServiceImpl;
 
 /**
  * @author Yurii Onufreiv

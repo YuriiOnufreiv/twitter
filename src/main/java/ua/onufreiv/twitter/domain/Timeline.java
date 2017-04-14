@@ -20,6 +20,10 @@ public class Timeline {
         tweets.add(tweet);
     }
 
+    public void addTweet(List<Tweet> tweets) {
+        this.tweets.addAll(tweets);
+    }
+
 //    public Tweet makeRetweet(Tweet tweet) {
 //        return tweet.retweet();
 //    }

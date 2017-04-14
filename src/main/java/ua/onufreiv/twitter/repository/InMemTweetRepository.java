@@ -46,4 +46,15 @@ public class InMemTweetRepository implements TweetRepository<Tweet> {
 
         return null;
     }
+
+    @Override
+    public List<Tweet> findUserTweets(User user) {
+        List<Tweet> userTweets = new ArrayList<>();
+        for(Tweet tweet : tweets) {
+            if(tweet.getUser().getName().equals(user.getName())) {
+                userTweets.add(tweet);
+            }
+        }
+        return userTweets;
+    }
 }

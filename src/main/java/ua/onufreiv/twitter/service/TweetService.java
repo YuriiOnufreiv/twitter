@@ -14,4 +14,6 @@ public interface TweetService {
     Tweet createEmptyTweet();
 
     Iterable findAll();
+
+    Tweet getById(int id);
 }
