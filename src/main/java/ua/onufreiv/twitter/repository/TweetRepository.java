@@ -7,4 +7,6 @@ public interface TweetRepository<T> {
     boolean create(T t);
 
     Iterable findAll();
+
+    T findByID(int id);
 }

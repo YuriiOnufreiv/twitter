@@ -9,7 +9,9 @@ import ua.onufreiv.twitter.domain.User;
 public interface TweetService {
     boolean create(Tweet tweet);
 
-    boolean create(User user, String text);
+    Tweet create(User user, String text);
+
+    Tweet createEmptyTweet();
 
     Iterable findAll();
 }

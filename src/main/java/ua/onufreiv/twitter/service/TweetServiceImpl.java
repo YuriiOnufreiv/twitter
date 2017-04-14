@@ -13,7 +13,7 @@ import ua.onufreiv.twitter.repository.TweetRepository;
  */
 @Component("tweetService")
 public class TweetServiceImpl implements TweetService {
-    private TweetRepository tweetRepository;
+    private TweetRepository<Tweet> tweetRepository;
 
     public TweetServiceImpl() {
     }
@@ -29,14 +29,16 @@ public class TweetServiceImpl implements TweetService {
     }
 
     @Override
-    public boolean create(User user, String text) {
+    public Tweet create(User user, String text) {
         Tweet tweet = createEmptyTweet();
         tweet.setUser(user);
         tweet.setText(text);
-        return tweetRepository.create(tweet);
+        tweetRepository.create(tweet);
+        return tweet;
     }
 
     @Lookup("tweet")
+    @Override
     public Tweet createEmptyTweet() {
         return null;
     }
@@ -45,5 +47,15 @@ public class TweetServiceImpl implements TweetService {
     @Override
     public Iterable findAll() {
         return tweetRepository.findAll();
+    }
+
+    public Tweet getTweetById(int id) {
+        return tweetRepository.findByID(id);
+    }
+
+    public Tweet createReplyTweet(User user, String text, Tweet replyToTweet) {
+        Tweet tweet = create(user, text);
+        tweet.setInReplyToTweet(replyToTweet);
+        return tweet;
     }
 }

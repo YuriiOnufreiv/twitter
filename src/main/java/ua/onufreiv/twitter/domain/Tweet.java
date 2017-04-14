@@ -9,12 +9,16 @@ import java.util.List;
  */
 @Component
 public class Tweet {
+    private int id;
     private User user;
     private String text;
-    private int likesCount;
-    private int retweetsCount;
     private List<User> mentions;
-    private List<String> replies;
+    private List<Tweet> replies;
+    private List<User> likes;
+    private List<Tweet> retweets;
+
+    private Tweet inReplyToTweet;
+    private Tweet retweetedTweet;
 
     public Tweet() {
     }
@@ -22,6 +26,14 @@ public class Tweet {
     public Tweet(User user, String text) {
         this.user = user;
         this.text = text;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public User getUser() {
@@ -40,31 +52,6 @@ public class Tweet {
         this.text = text;
     }
 
-    public int getLikesCount() {
-        return likesCount;
-    }
-
-    public void setLikesCount(int likesCount) {
-        this.likesCount = likesCount;
-    }
-
-    public int like() {
-        return ++likesCount;
-    }
-
-    public int getRetweetsCount() {
-        return retweetsCount;
-    }
-
-    public void setRetweetsCount(int retweetsCount) {
-        this.retweetsCount = retweetsCount;
-    }
-
-    public Tweet retweet() {
-        retweetsCount++;
-        return this;
-    }
-
     public List<User> getMentions() {
         return mentions;
     }
@@ -73,20 +60,44 @@ public class Tweet {
         this.mentions = mentions;
     }
 
-    public void addMention(User user) {
-        mentions.add(user);
-    }
-
-    public List<String> getReplies() {
+    public List<Tweet> getReplies() {
         return replies;
     }
 
-    public void setReplies(List<String> replies) {
+    public void setReplies(List<Tweet> replies) {
         this.replies = replies;
     }
 
-    public void reply(String reply) {
-        replies.add(reply);
+    public List<User> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<User> likes) {
+        this.likes = likes;
+    }
+
+    public List<Tweet> getRetweets() {
+        return retweets;
+    }
+
+    public void setRetweets(List<Tweet> retweets) {
+        this.retweets = retweets;
+    }
+
+    public Tweet getInReplyToTweet() {
+        return inReplyToTweet;
+    }
+
+    public void setInReplyToTweet(Tweet inReplyToTweet) {
+        this.inReplyToTweet = inReplyToTweet;
+    }
+
+    public Tweet getRetweetedTweet() {
+        return retweetedTweet;
+    }
+
+    public void setRetweetedTweet(Tweet retweetedTweet) {
+        this.retweetedTweet = retweetedTweet;
     }
 
     @Override

@@ -20,13 +20,13 @@ public class Timeline {
         tweets.add(tweet);
     }
 
-    public Tweet makeRetweet(Tweet tweet) {
-        return tweet.retweet();
-    }
-
-    public int likeTweet(Tweet tweet) {
-        return tweet.like();
-    }
+//    public Tweet makeRetweet(Tweet tweet) {
+//        return tweet.retweet();
+//    }
+//
+//    public int likeTweet(Tweet tweet) {
+//        return tweet.like();
+//    }
 
     public List<Tweet> userTimeline(User user) {
         List<Tweet> userTimeline = new ArrayList<>();

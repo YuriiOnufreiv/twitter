@@ -34,4 +34,16 @@ public class InMemTweetRepository implements TweetRepository<Tweet> {
     public Iterable findAll() {
         return new ArrayList<>(tweets);
     }
+
+    @Override
+    public Tweet findByID(int id) {
+        for (Tweet tweet : tweets) {
+            if(tweet.getId() == id) {
+                return tweet;
+            }
+
+        }
+
+        return null;
+    }
 }
