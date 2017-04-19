@@ -4,11 +4,13 @@ import ua.onufreiv.twitter.domain.Timeline;
 import ua.onufreiv.twitter.domain.Tweet;
 import ua.onufreiv.twitter.domain.User;
 
+import java.util.Optional;
+
 /**
  * Created by Yurii_Onufreiv on 31-Mar-17.
  */
 public interface TimelineService {
-    Tweet getTweetById(int id);
+    Optional<Tweet> getTweetById(Long id);
 
     Tweet createTweet(User user, String text);
 

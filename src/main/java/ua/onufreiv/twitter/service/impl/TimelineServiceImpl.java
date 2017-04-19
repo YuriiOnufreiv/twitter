@@ -9,6 +9,8 @@ import ua.onufreiv.twitter.domain.User;
 import ua.onufreiv.twitter.repository.TweetRepository;
 import ua.onufreiv.twitter.service.TimelineService;
 
+import java.util.Optional;
+
 /**
  * Created by Yurii_Onufreiv on 14-Apr-17.
  */
@@ -22,7 +24,7 @@ public class TimelineServiceImpl implements TimelineService {
     }
 
     @Override
-    public Tweet getTweetById(int id) {
+    public Optional<Tweet> getTweetById(Long id) {
         return tweetRepository.findByID(id);
     }
 

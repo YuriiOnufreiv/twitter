@@ -9,6 +9,7 @@ import ua.onufreiv.twitter.infrastructure.annotations.PostConstructBean;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Yurii_Onufreiv on 30-Mar-17.
@@ -36,15 +37,24 @@ public class InMemTweetRepository implements TweetRepository<Tweet> {
     }
 
     @Override
-    public Tweet findByID(int id) {
-        for (Tweet tweet : tweets) {
-            if(tweet.getId() == id) {
-                return tweet;
-            }
+    public Optional<Tweet> findByID(Long id) {
+        Optional<Tweet> tweet;
 
+        try {
+            tweet = Optional.ofNullable(tweets.get(id.intValue()));
+        } catch (NullPointerException e) {
+            tweet = Optional.empty();
         }
 
-        return null;
+        return tweet;
+
+//        for (Tweet tweet : tweets) {
+//            if(tweet.getId().equals(id)) {
+//                return Optional.ofNullable(tweet);
+//            }
+//        }
+//
+//        return Optional.empty();
     }
 
     @Override

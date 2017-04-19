@@ -9,6 +9,8 @@ import ua.onufreiv.twitter.infrastructure.annotations.Benchmark;
 import ua.onufreiv.twitter.repository.TweetRepository;
 import ua.onufreiv.twitter.service.TweetService;
 
+import java.util.Optional;
+
 /**
  * Created by Yurii_Onufreiv on 31-Mar-17.
  */
@@ -50,10 +52,6 @@ public class TweetServiceImpl implements TweetService {
         return tweetRepository.findAll();
     }
 
-    public Tweet getTweetById(int id) {
-        return tweetRepository.findByID(id);
-    }
-
     public Tweet createReplyTweet(User user, String text, Tweet replyToTweet) {
         Tweet tweet = create(user, text);
         tweet.setInReplyToTweet(replyToTweet);
@@ -61,7 +59,7 @@ public class TweetServiceImpl implements TweetService {
     }
 
     @Override
-    public Tweet getById(int id) {
+    public Optional<Tweet> findById(Long id) {
         return tweetRepository.findByID(id);
     }
 }

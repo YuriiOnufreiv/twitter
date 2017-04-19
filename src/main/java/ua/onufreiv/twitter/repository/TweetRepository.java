@@ -3,6 +3,7 @@ package ua.onufreiv.twitter.repository;
 import ua.onufreiv.twitter.domain.User;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Yurii_Onufreiv on 30-Mar-17.
@@ -12,7 +13,7 @@ public interface TweetRepository<T> {
 
     Iterable findAll();
 
-    T findByID(int id);
+    Optional<T> findByID(Long id);
 
     List<T> findUserTweets(User user);
 }
