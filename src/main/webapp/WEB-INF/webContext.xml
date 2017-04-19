@@ -12,6 +12,9 @@
 
     <mvc:annotation-driven/>
 
+    <!-- required for converters -->
+    <!--<mvc:annotation-driven conversion-service="conversionService"/>-->
+
     <mvc:view-resolvers>
         <mvc:jsp prefix="/WEB-INF/jsp/"
                  suffix=".jsp"
@@ -19,5 +22,13 @@
     </mvc:view-resolvers>
 
     <context:component-scan base-package="ua.onufreiv.twitter.web.app"/>
+
+    <bean name="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="ua.onufreiv.twitter.web.app.TweetConverter"/>
+            </set>
+        </property>
+    </bean>
 
 </beans>
