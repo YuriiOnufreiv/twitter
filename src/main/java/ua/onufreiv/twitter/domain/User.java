@@ -9,10 +9,24 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 public class User {
+    private Long id;
     private String name;
     private Profile profile;
 
     public User() {
+    }
+
+    public User(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public User(String name) {
@@ -33,7 +47,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "\'" + name + '\'';
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     public class Profile {

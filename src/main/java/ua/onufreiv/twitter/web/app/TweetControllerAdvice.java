@@ -15,8 +15,12 @@ import java.util.Optional;
  */
 @ControllerAdvice(assignableTypes = {TweetsController.class})
 public class TweetControllerAdvice {
+    private final TweetService tweetService;
+
     @Autowired
-    private TweetService tweetService;
+    public TweetControllerAdvice(TweetService tweetService) {
+        this.tweetService = tweetService;
+    }
 
     @InitBinder
     public void tweetBinder(WebDataBinder binder) {
@@ -29,4 +33,11 @@ public class TweetControllerAdvice {
             }
         });
     }
+
+//    @ExceptionHandler(UnsupportedOperationException.class)
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    public String onException(Exception ex, Model model) {
+//        model.addAttribute("err", ex.getStackTrace());
+//        return "error";
+//    }
 }

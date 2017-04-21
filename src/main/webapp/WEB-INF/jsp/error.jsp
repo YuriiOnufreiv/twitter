@@ -9,15 +9,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Create User</title>
+    <title>Users</title>
 </head>
 <body>
-<h3>Create/Update User</h3>
-<hr/>
-<form method="post" action="save">
-    <input type="text" name="id" value="${user.id}">
-    Name <input type="text" name="name" value="${user.name}">
-    <input type="submit" value="Save">
-</form>
+    ${ex}
+    <%--${err}--%>
 </body>
 </html>

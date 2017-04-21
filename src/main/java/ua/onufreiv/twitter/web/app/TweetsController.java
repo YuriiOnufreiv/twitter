@@ -37,10 +37,11 @@ public class TweetsController {
         return tweet.toString();
     }
 
-    @RequestMapping(value = "/modify", method = RequestMethod.GET)
+    @RequestMapping(value = "/exception", method = RequestMethod.GET)
     @ResponseBody
-    public String modify(@RequestParam("id") Long id) {
-        return tweetService.findById(id).map(Tweet::toString).orElse("");
+    public String modify() {
+        throw new UnsupportedOperationException("BAD EXCEPTION");
+//        return tweetService.findById(id).map(Tweet::toString).orElse("");
     }
 
 //    @InitBinder

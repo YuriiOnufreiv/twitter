@@ -31,4 +31,16 @@
         </property>
     </bean>
 
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <map>
+                <entry key="UnsupportedOperationException" value="error"/>
+            </map>
+        </property>
+        <property name="defaultErrorView" value="error"/>
+        <property name="exceptionAttribute" value="ex"/>
+        <!-- Name of logger to use to log exceptions. Unset by default, so logging disabled --> <property
+            name="warnLogCategory" value="com.epam.example.MvcLogger"/>
+    </bean>
+
 </beans>
