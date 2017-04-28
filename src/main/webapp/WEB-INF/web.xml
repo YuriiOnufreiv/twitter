@@ -10,12 +10,12 @@
         </param-value>
     </context-param>
     <!--<context-param>-->
-        <!--<param-name>commonContext</param-name>-->
-        <!--<param-value>commonContext</param-value>-->
+    <!--<param-name>commonContext</param-name>-->
+    <!--<param-value>commonContext</param-value>-->
     <!--</context-param>-->
 
     <!--<listener>-->
-        <!--<listener-class>ua.onufreiv.twitter.web.infrastructure.MyServletContextListener</listener-class>-->
+    <!--<listener-class>ua.onufreiv.twitter.web.infrastructure.MyServletContextListener</listener-class>-->
     <!--</listener>-->
 
     <listener>
@@ -53,6 +53,20 @@
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/servlet/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>restDispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/restContext.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>restDispatcherServlet</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
 
 </web-app>
