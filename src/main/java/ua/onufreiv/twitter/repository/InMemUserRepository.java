@@ -55,7 +55,7 @@ public class InMemUserRepository implements UserRepository<User> {
         return user;
 
 //        for (Tweet tweet : users) {
-//            if(tweet.getId().equals(id)) {
+//            if(tweet.getTweetId().equals(id)) {
 //                return Optional.ofNullable(tweet);
 //            }
 //        }

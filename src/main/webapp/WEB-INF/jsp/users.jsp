@@ -17,7 +17,7 @@
 <c:forEach items="${users}" var="user">
     <ul>
         <form method="get" action="edit">
-            <li><input type="text" name="id" value="${user.id}"/></li>
+            <li><input type="text" name="tweetId" value="${user.tweetId}"/></li>
             <li>Username: ${user.name}</li>
             <input type="submit" value="Edit"/>
         </form>

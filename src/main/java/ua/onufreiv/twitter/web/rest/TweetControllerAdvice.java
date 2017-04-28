@@ -1,8 +1,11 @@
 package ua.onufreiv.twitter.web.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ua.onufreiv.twitter.domain.Tweet;
 import ua.onufreiv.twitter.service.TweetService;
@@ -25,8 +28,14 @@ public class TweetControllerAdvice {
             public void setAsText(String text) throws IllegalArgumentException {
                 Long id = Long.valueOf(text);
                 Optional<Tweet> tweet = tweetService.findById(id);
-                setValue(tweet.orElse(null));
+                setValue(tweet.orElseThrow(() -> new NoSuchTweetException(id.toString())));
             }
         });
+    }
+
+    @ExceptionHandler(NoSuchTweetException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionDescription onException(Exception ex) {
+        return new ExceptionDescription("error", ex.getMessage() + " not found");
     }
 }

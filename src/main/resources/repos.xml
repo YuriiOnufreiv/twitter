@@ -10,7 +10,7 @@
 
     <context:component-scan base-package="ua.onufreiv.twitter.repository, ua.onufreiv.twitter.domain"/>
 
-    <!--<bean id="tweetRepository"-->
+    <!--<bean tweetId="tweetRepository"-->
           <!--class="ua.onufreiv.twitter.repository.InMemTweetRepository"-->
           <!--init-method="initialize"/>-->
 

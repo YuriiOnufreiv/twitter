@@ -1,5 +1,6 @@
 package ua.onufreiv.twitter.domain;
 
+import org.springframework.hateoas.ResourceSupport;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -8,8 +9,8 @@ import java.util.List;
  * Created by Yurii_Onufreiv on 30-Mar-17.
  */
 @Component
-public class Tweet {
-    private Long id;
+public class Tweet extends ResourceSupport {
+    private Long tweetId;
     private User user;
     private String text;
     private List<User> mentions;
@@ -28,12 +29,12 @@ public class Tweet {
         this.text = text;
     }
 
-    public Long getId() {
-        return id;
+    public Long getTweetId() {
+        return tweetId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTweetId(Long tweetId) {
+        this.tweetId = tweetId;
     }
 
     public User getUser() {

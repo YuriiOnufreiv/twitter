@@ -49,7 +49,7 @@ public class InMemTweetRepository implements TweetRepository<Tweet> {
         return tweet;
 
 //        for (Tweet tweet : tweets) {
-//            if(tweet.getId().equals(id)) {
+//            if(tweet.getTweetId().equals(id)) {
 //                return Optional.ofNullable(tweet);
 //            }
 //        }

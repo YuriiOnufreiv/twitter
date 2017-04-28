@@ -15,7 +15,7 @@
 <h3>Create/Update User</h3>
 <hr/>
 <form method="post" action="save">
-    <input type="text" name="id" value="${user.id}">
+    <input type="text" name="tweetId" value="${user.tweetId}">
     Name <input type="text" name="name" value="${user.name}">
     <input type="submit" value="Save">
 </form>

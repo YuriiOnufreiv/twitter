@@ -21,11 +21,11 @@
         <hr/>
         <%--<li>Likes:--%>
                 <%--${tweet.likesCount}--%>
-            <%--<input type="button" name="${tweet.id}" class="like" value="Like"/>--%>
+            <%--<input type="button" name="${tweet.tweetId}" class="like" value="Like"/>--%>
         <%--</li>--%>
         <%--<li>Retweets:--%>
                 <%--${tweet.retweetCount}--%>
-            <%--<input type="button" name="${tweet.id}" class="retweet" value="Retweet"/>--%>
+            <%--<input type="button" name="${tweet.tweetId}" class="retweet" value="Retweet"/>--%>
         <%--</li>--%>
     </ul>
 </c:forEach>
