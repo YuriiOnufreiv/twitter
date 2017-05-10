@@ -5,18 +5,21 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
+            /WEB-INF/securityContext.xml
             classpath:/repos.xml
             classpath:/services.xml
         </param-value>
     </context-param>
-    <!--<context-param>-->
-    <!--<param-name>commonContext</param-name>-->
-    <!--<param-value>commonContext</param-value>-->
-    <!--</context-param>-->
 
-    <!--<listener>-->
-    <!--<listener-class>ua.onufreiv.twitter.web.infrastructure.MyServletContextListener</listener-class>-->
-    <!--</listener>-->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
